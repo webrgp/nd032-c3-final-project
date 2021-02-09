@@ -321,10 +321,16 @@ function defaultFetchOpts() {
 
 function getTracks() {
 	// GET request to `${SERVER}/api/tracks`
+	return fetch(`${SERVER}/api/tracks`)
+				 .then( response => response.json() )
+				 .catch( error => console.log("Problem with getTracks request::", error) )
 }
 
 function getRacers() {
 	// GET request to `${SERVER}/api/cars`
+	return fetch(`${SERVER}/api/cars`)
+				 .then( response => response.json() )
+				 .catch( error => console.log("Problem with getRacers request::", error) )
 }
 
 function createRace(player_id, track_id) {
