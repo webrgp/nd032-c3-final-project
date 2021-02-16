@@ -74,7 +74,7 @@ function setupClickHandlers() {
 
 		// Handle acceleration click
 		if (target.matches('#gas-peddle')) {
-			handleAccelerate()
+			handleAccelerate('#gas-peddle')
 		}
 
 	}, false)
@@ -84,7 +84,7 @@ function setupClickHandlers() {
 		if(e.code == 'Space' && e.target == document.body) {
 			e.preventDefault();
 			if (store.race_id !== undefined) {
-				handleAccelerate()
+				handleAccelerate('#gas-peddle')
 			}
 		}
 	});
@@ -213,10 +213,12 @@ function handleSelectTrack(target) {
 
 }
 
-async function handleAccelerate() {
+async function handleAccelerate(selector) {
 	// Invoke the API call to accelerate
 	try {
 		await accelerate(store.race_id)
+		const btn = document.querySelector(selector)
+		btn.style = "animation: pulse 0.6s infinite ease-out;"
 	} catch(err) {
 		console.error(`Problem with handleAccelerate function::`, err)
 	}
@@ -313,12 +315,12 @@ function resultsView(positions) {
 		<header>
 			<h1>Race Results</h1>
 		</header>
-		<main>
+		<div>
 			<section id="create-race">
 				${raceProgress(positions)}
 				<a class="button" href="/race">Start a new race</a>
 			</section>
-		</main>
+		</div>
 		<footer></footer>
 	`
 }
@@ -350,15 +352,15 @@ function raceProgress(positions) {
 		}).join('')
 
 	return `
-		<main>
-			<h3>Leaderboard</h3>
+		<h3>Leaderboard</h3>
+		<div class="gameBoard">
 			<section id="leaderBoard">
 				${results}
 			</section>
 			<section id="raceTracks">
 				${positionPerc}
 			</section>
-		</main>
+		</div>
 	`
 }
 

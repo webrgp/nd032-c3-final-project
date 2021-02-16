@@ -1,25 +1,56 @@
 /* PROGRESS PAGE SPECIFIC STYLES */
 
+@keyframes pulse {
+  from {
+    box-shadow:  0 0 0 0 rgba(255,255,255,1),
+                 0 0 0 0 rgba(51,51,51,1);
+  }
+  to {
+    box-shadow:  0 0 0 0.65em rgba(255,255,255,1),
+                 0 0 0 1em rgba(51,51,51,0);
+  }
+}
+
 /* -------------------  MOBILE  --------------------- */
 header {
   background-image: url('../images/splash.jpg');
 }
 
+main {
+  max-width: 1280px;
+  margin: auto;
+}
+
 main#two-columns {
-  margin: 50px 0;
+  margin: 50px auto;
   display: flex;
 }
 
+.gameBoard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+section#accelerate {
+  margin-left: 20px;
+}
+
 section#accelerate button {
-  height: 300px;
-  width: 300px;
+  height: 200px;
+  width: 200px;
   margin: 30px auto;
   border-radius: 180%;
   background-color: green;
-  border-color: rgb(14, 166, 6);
   cursor: pointer;
   max-width: 30vw;
+  user-select: none;
 }
+
+section#accelerate button:focus {
+  outline: none;
+}
+
 main #leaderBoard {
   width: 100%;
 }
@@ -96,6 +127,7 @@ main #raceTracks .trackPos .raceCar {
 
 .card.podracer * {
   color: #fff;
+  pointer-events: none;
 }
 
 .card.podracer > div {
