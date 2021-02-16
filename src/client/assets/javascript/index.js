@@ -78,16 +78,6 @@ function setupClickHandlers() {
 		}
 
 	}, false)
-
-	// Handle acceleration press
-	window.addEventListener('keydown', function(e) {
-		if(e.code == 'Space' && e.target == document.body) {
-			e.preventDefault();
-			if (store.race_id !== undefined) {
-				handleAccelerate('#gas-peddle')
-			}
-		}
-	});
 }
 
 async function delay(ms) {
@@ -217,8 +207,6 @@ async function handleAccelerate(selector) {
 	// Invoke the API call to accelerate
 	try {
 		await accelerate(store.race_id)
-		const btn = document.querySelector(selector)
-		btn.style = "animation: pulse 0.6s infinite ease-out;"
 	} catch(err) {
 		console.error(`Problem with handleAccelerate function::`, err)
 	}
